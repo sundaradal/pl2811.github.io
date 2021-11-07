@@ -1,0 +1,82 @@
+---
+title: "HW_4"
+output: 
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_float: true
+  
+---
+```{r}
+library(tidyverse)
+library(dplyr)
+library(ggridges)
+library(ggplot2)
+library(forcats)
+library(p8105.datasets)
+library(httr)
+library(jsonlite)
+library(viridis)
+library(patchwork)
+library(knitr)    
+library(png)
+library(tidyverse)
+library(plotly)
+
+```
+
+```{r}
+library(p8105.datasets)
+data("rest_inspec")
+na.omit(rest_inspec)
+
+rest_inspec=janitor::clean_names(rest_inspec)
+rest_inspec<-filter(rest_inspec, boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
+```
+
+```{r}
+critical<-filter(rest_inspec,critical_flag %in% c("Critical"),  boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
+Manhattan<-filter(rest_inspec, boro %in% c("MANHATTAN"))
+```
+
+
+```{r}
+rest_inspec %>% 
+  mutate(boro = fct_reorder(boro, score)) %>% 
+  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis")
+```
+
+```{r}
+
+
+fig <- plot_ly(
+  type = 'scatter',
+  x = rest_inspec$cuisine_description,
+  y = rest_inspec$score,
+  mode = 'markers',
+  transforms = list(
+    list(
+      type = 'aggregate',
+      groups = rest_inspec$cuisine_description,
+      aggregations = list(
+        list(
+          target = 'y', func = 'sum', enabled = T
+        )
+      )
+    )
+  )
+)
+
+fig
+
+```
+
+
+
+```{r}
+critical%>% 
+  count(cuisine_description) %>% 
+  mutate(boro= fct_reorder(cuisine_description, n)) %>% 
+  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis")
+
+```

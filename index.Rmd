@@ -1,14 +1,26 @@
 ---
-title: "My awesome website"
+title: "Pei-Hisn's website"
 output: 
   html_document:
+    code_folding: hide
     toc: true
     toc_float: true
-    theme: cerulean
+
+
 ---
 
-# This is Jeff's awesome website
+# This website has information about me
 
-![](https://media.giphy.com/media/drXGoW1iudhKw/giphy.gif)
 
-[About](About.html)
+
+
+# My resume
+
+[resume](About.html)
+
+
+# HW4 dashboard
+
+[dashboard](dashboard.html)
+
+

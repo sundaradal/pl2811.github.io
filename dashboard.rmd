@@ -1,0 +1,60 @@
+---
+title: "Dashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(flexdashboard)
+
+```
+
+```{r,results='hide'}
+data("rest_inspec")
+na.omit(rest_inspec)
+
+rest_inspec=janitor::clean_names(rest_inspec)
+rest_inspec<-filter(rest_inspec, boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
+
+critical<-filter(rest_inspec,critical_flag %in% c("Critical"),  boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
+
+Manhattan<-filter(rest_inspec, boro %in% c("MANHATTAN"))
+
+```
+
+dashboard {.tabset .tabset-fade}
+-----------------------------------------------------------------------
+### Chart 1
+  
+```{r}
+rest_inspec %>% 
+  mutate(boro = fct_reorder(boro, score)) %>% 
+  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis")
+```
+
+
+### Chart 2
+
+```{r}
+rest_inspec %>% 
+  count(boro) %>% 
+  mutate(boro= fct_reorder(boro, n)) %>% 
+  plot_ly(x = ~boro, y = ~n, color = ~boro, type = "bar", colors = "viridis")
+```
+
+### Chart 3
+
+```{r}
+critical %>% 
+  count(cuisine_description) %>% 
+  mutate(boro= fct_reorder(cuisine_description, n)) %>% 
+  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis", width = 800)
+```

@@ -1,7 +1,64 @@
 ---
-title: "About"
-author: "Pei Hsin Lin"
-date: "11/6/2021"
-output: html_document
+title: "About Me"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+  
 ---
-#This is the iniformation about me
+Pei-Hsin Lin  
+================================================================================
+Currently student in  Columbia University MS program of Biostatistics  
+
+Education   <i class="fas fa-graduation-cap"></i>
+--------------------------------------------------------------------------------
+### Tamkang University (TKU), New Taipei, Taiwan
+Bachelor of Science in Statistics   
+Sep 2016 - Jun 2020
+
+### Columbia University, New York, US
+Master of Science in Biostatistics  
+Sep 2021-Jun 2023
+
+Research Experience <i class="fas fa-chart-bar"></i>
+================================================================================
+- Interferon Preventing Severe Infection in Patients with Chronic Granulomatous Disease 
+  2019 - 2020
+
+  Course: Survival Analysis
+
+- A Study on the Influencing Factors of Children’s Development in Taiwan 2019 - 2020
+  
+  Course: Epidemiology
+- Multiple Regression Analysis on Death Rates in Taiwan 2018 - 2019
+
+  Course: Regression Analysis,
+
+- Applying Data Mining to the Impact and Prediction of Taipei Metro’s Incentive Strategy 2019 - 2020 
+
+  Course: Data Mining,
+
+
+Programing language  certification <i class="fas fa-laptop"></i>
+================================================================================
+  -SAS Advanced Programming for SAS (PASS) 
+
+  -Base Programming for SAS (PASS)
+
+Skills  <i class="fas fa-magic"></i>
+================================================================================
+  -Computer Language
+
+Statistical Programming & Analysis - SAS, R, SPSS 
+
+  -Language
+
+Mandarin - Native / English - Fluent  / Korean - Conversational 
+
+
+
+Link 
+================================================================================
+
+- <i class="fa fa-github"></i> [github.com/sundaradal](http://github.com/sundaradal)
+- <i class="fab fa-linkedin"></i> [linkedin/Pei Hsin Lin](http://linkedin.com/in/pei-hsin-lin-299aa821b)

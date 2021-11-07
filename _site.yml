@@ -3,12 +3,17 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: "resume"
       href: about.html
     - icon: fa-envelope fa-lg
       href: mailto:<pl2811@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/sundaradal/
+    - icon: fab fa-linkedin
+      href: http://linkedin.com/in/pei-hsin-lin-299aa821b/
+    - text: "dashboard"
+      href: dashboard.html
+      
 output:
   html_document:
-    theme: cerulean
+

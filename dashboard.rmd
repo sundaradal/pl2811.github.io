@@ -8,53 +8,53 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-library(tidyverse)
-library(p8105.datasets)
-library(dplyr)
-library(ggplot2)
-library(plotly)
 library(flexdashboard)
 
 ```
 
-```{r,results='hide'}
+
+```{r, results='hide'}
+library(p8105.datasets)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(p8105.datasets)
+library(viridis)
+library(knitr)    
+library(plotly)
 data("rest_inspec")
-na.omit(rest_inspec)
+
 
 rest_inspec=janitor::clean_names(rest_inspec)
 rest_inspec<-filter(rest_inspec, boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
+rest_inspec<-na.omit(rest_inspec)
 
 critical<-filter(rest_inspec,critical_flag %in% c("Critical"),  boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
-
 Manhattan<-filter(rest_inspec, boro %in% c("MANHATTAN"))
-
 ```
+
 
 dashboard {.tabset .tabset-fade}
 -----------------------------------------------------------------------
 ### Chart 1
-  
 ```{r}
 rest_inspec %>% 
   mutate(boro = fct_reorder(boro, score)) %>% 
-  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis")
+  plot_ly(y = ~score, color = ~boro, type = "box", colors = "viridis", width=800)
 ```
-
-
 ### Chart 2
-
 ```{r}
+
 rest_inspec %>% 
   count(boro) %>% 
   mutate(boro= fct_reorder(boro, n)) %>% 
   plot_ly(x = ~boro, y = ~n, color = ~boro, type = "bar", colors = "viridis")
 ```
-
 ### Chart 3
-
 ```{r}
-critical %>% 
+critical%>% 
   count(cuisine_description) %>% 
   mutate(boro= fct_reorder(cuisine_description, n)) %>% 
-  plot_ly(x = ~cuisine_description, y = ~n, color = ~cuisine_description, type = "bar", colors = "viridis", width = 800)
+  plot_ly(x = ~cuisine_description, y = ~n , color = ~cuisine_description, type = "bar", colors = "viridis",width=900)
+
 ```

@@ -6,6 +6,7 @@ output:
     toc: true
     toc_float: true
   
+
 ---
 ```{r}
 library(tidyverse)
@@ -25,16 +26,19 @@ library(plotly)
 
 ```
 
-```{r}
+```{r, results='hide'}
 library(p8105.datasets)
 data("rest_inspec")
-na.omit(rest_inspec)
+
 
 rest_inspec=janitor::clean_names(rest_inspec)
 rest_inspec<-filter(rest_inspec, boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
+rest_inspec<-na.omit(rest_inspec)
+
 ```
 
-```{r}
+```{r, results='hide'}
+
 critical<-filter(rest_inspec,critical_flag %in% c("Critical"),  boro %in% c("MANHATTAN", "BRONX", "QUEENS","BROOKLYN","STATEN ISLAND"))
 Manhattan<-filter(rest_inspec, boro %in% c("MANHATTAN"))
 ```
